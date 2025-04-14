@@ -26,7 +26,7 @@ nexttile
 plot(omega, G_prime, '-o', 'LineWidth', 2, 'Color', "g");
 xlabel('w', 'FontSize', 24,'FontWeight','bold'); % Label for the x-axis
 ylabel("G' Storage Modulus", 'FontSize', 24,'FontWeight','bold'); % Label for the y-axis
-title("G', Storage Modulus vs. $W = 2\pi f$ for low-MW Hydrogel (35 kDa)", ...
+title("G', Storage Modulus vs. $w = 2\pi f$ for low-MW Hydrogel (35 kDa)", ...
     'FontSize', 24, 'FontWeight', 'bold', 'Interpreter', 'latex');
 grid on;
 ax = gca;
@@ -40,7 +40,7 @@ nexttile
 plot(omega, G_double_prime, '-o', 'LineWidth', 2, 'Color', "r");
 xlabel('w', 'FontSize', 24,'FontWeight','bold'); % Label for the x-axis
 ylabel('G" Loss Modulus', 'FontSize', 24,'FontWeight','bold'); % Label for the y-axis
-title('G'', Loss Modulus vs. $W = 2\pi f$ for low-MW Hydrogel (35 kDa)', ...
+title('G'', Loss Modulus vs. $w = 2\pi f$ for low-MW Hydrogel (35 kDa)', ...
     'FontSize', 24, 'FontWeight', 'bold', 'Interpreter', 'latex');
 grid on;
 ax = gca;
