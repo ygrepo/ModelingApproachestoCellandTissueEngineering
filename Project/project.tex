@@ -1,4 +1,7 @@
-\documentclass[12pt,twoside]{article}
+%\documentclass[12pt,twoside]{article}
+\documentclass{article}
+\usepackage[a4paper,margin=1in]{geometry}
+
 \usepackage[dvipsnames]{xcolor}
 \usepackage{tikz,graphicx,amsmath,amsfonts,amscd,amssymb,mathrsfs, bm,cite,epsfig,epsf,url}
 \usepackage[hang,flushmargin]{footmisc}
@@ -44,6 +47,13 @@
 %\usepackage{minted}
 \usepackage{gensymb}
 
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[justification=centering,singlelinecheck=true]{caption}
+\usepackage{subcaption}   
+\usepackage{caption}
+\captionsetup[figure]{skip=5pt}   % ← distance between figure and caption
+
 \input{macros}
 
 
@@ -58,14 +68,100 @@ Student: Yves Greatti\\\
 \section*{Introduction}
 In Lecture 12, the polarization of the stem cell cytoskeleton as a function of
 the stiffness of ECM is considered. A number of characteristics of cell/ECM
-interaction, such as the modeling-predicted order parameter \cite{Zemel2010} (Fig.1) or
-experiment-estimated myosin fiber intensity \cite{Zemel2010}  (Fig.2) demonstrate an increase 
-saturation pattern as functions of ECM stiffness.
+interaction, such as the modeling-predicted order parameter \cite{Zemel2010}
+(Figure~\ref{fig:combined}(a)) or experiment-estimated myosin fiber intensity
+\cite{Zemel2010} (Figure~\ref{fig:combined}(b)) demonstrate an
+increase–saturation pattern as functions of ECM stiffness.
 Use the 1-D model where the cell and ECM are presented by the active and
-elastic springs, respectively \cite{Zemel2010}  (Fig.3) and show that the active force generated
+elastic springs, respectively \cite{Zemel2010}  (Figure~\ref{fig:1d-spring-model}) and show that the active force generated
 by the cell, f$_a$, as a function of the ECM stiffness, has the same increase 
 saturation pattern of behavior.
 
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{order_parameter}
+    \caption{Normalized order parameter vs.\ \(\frac{E_m}{E_c}\).}
+    \label{fig:order_parameter}
+  \end{subfigure}
+  \quad
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{actomyosin}
+    \caption{Myosin fibre intensity vs.\ \(E_m\).}
+    \label{fig:myosin}
+  \end{subfigure}
+  \caption{(a) Order–parameter saturation. (b) Actomyosin‐intensity saturation.}
+  \label{fig:combined}
+\end{figure}
+
+
+\section*{Anisotropic Polarized Actomyosin Force}
+
+\[
+  \frac{f^{a}}{f^{0}}
+  = \alpha \,\frac{k_{m}}{\tilde{k}_{c} + k_{m}}
+\]
+
+\begin{itemize}
+  \item $\displaystyle \alpha$: polarizability factor
+  \item $\displaystyle \tilde{k}_{c} = (1 + \alpha)\,k_{c}$: effective stiffness of the cell
+  \item $k_{m}$: matrix rigidity
+\end{itemize}
+
+\section*{Interpretation}
+
+\begin{itemize}
+  \item For very soft matrices (\(k_{m}\ll \tilde{k}_{c}\)):
+    \[
+      \frac{f^{a}}{f^{0}}
+      = \alpha \,\frac{k_{m}}{\tilde{k}_{c} + k_{m}}
+      \;\longrightarrow\;0.
+    \]
+    If \(k_{m}\ll \tilde{k}_{c}\), then \(\tilde{k}_{c}+k_{m}\approx \tilde{k}_{c}\) and
+    \[
+      \frac{f^{a}}{f^{0}}
+      \approx \alpha \,\frac{k_{m}}{\tilde{k}_{c}}
+       \approx  \,k_{m}
+      \;\longrightarrow\;0
+      \quad\text{as }k_{m}\to 0.
+    \]
+  \item For very stiff matrices (\(k_{m}\gg \tilde{k}_{c}\)):
+    \[
+      \frac{f^{a}}{f^{0}}
+      = \alpha \,\frac{k_{m}}{\tilde{k}_{c} + k_{m}}
+      \approx \alpha \,\frac{k_{m}}{k_{m}} 
+      \;\longrightarrow\;\alpha
+    \] 
+\end{itemize}
+
+Thus, the active force grows with matrix stiffness and  
+saturates at a maximum value proportional to~$\alpha$.
+
+\section*{Derivation.}
+
+Here we show, using the 1-D two‐spring model of cell and matrix  (Figure~\ref{fig:1d-spring-model}),
+that the cell’s active force \(f_a\) vs.\ ECM stiffness \(k\) follows the
+same functional form:
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=1\textwidth]{springs}
+  \caption{1D model: active cell spring (stiffness \(k_c\)) in series with \\
+  ECM spring (stiffness \(k_m\)).}
+    \label{fig:1d-spring-model}
+\end{figure}
+
+
+\section*{Illustration}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{plot}
+  \caption{Active Force vs. Matrix stiffness.}
+  \label{fig:activeForcet}
+\end{figure}
+     
 \bibliographystyle{plain}
 \bibliography{bibliography}
 
