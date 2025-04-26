@@ -1,0 +1,296 @@
+\documentclass[12pt,twoside]{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz,graphicx,amsmath,amsfonts,amscd,amssymb,mathrsfs, bm,cite,epsfig,epsf,url}
+\usepackage[hang,flushmargin]{footmisc}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsthm,multirow,wasysym,appendix}
+\usepackage{array,subcaption} 
+% \usepackage[small,bf]{caption}
+\usepackage{bbm}
+\usepackage{pgfplots}
+\usetikzlibrary{spy}
+\usepgfplotslibrary{external}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{arrows,automata}
+\usepackage{thmtools}
+\usepackage{blkarray} 
+\usepackage{textcomp}
+\usepackage{float}
+%\usepackage[left=0.8in,right=1.0in,top=1.0in,bottom=1.0in]{geometry}
+
+
+\usepackage{times}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{color}
+\usepackage{graphics}
+\usepackage{enumerate}
+\usepackage{amstext}
+\usepackage{blkarray}
+\usepackage{url}
+\usepackage{epsfig}
+\usepackage{bm}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+\usepackage{textcomp}
+%\usepackage[left=0.8in,right=1.0in,top=1.0in,bottom=1.0in]{geometry}
+\usepackage{mathtools}
+%\usepackage{minted}
+\usepackage{gensymb}
+
+\input{macros}
+
+
+\begin{document}
+
+\noindent Professor Rio\\
+EN.585.615.81.SP21 Mathematical Methods\\
+Take Home Project 3\\
+Johns Hopkins University\\
+Student: Yves Greatti\\\
+
+\section*{Question 1}
+The Wormersley equation for blood flow is:
+\[
+	\rho \frac{\partial w}{\partial t} = \frac{\mu}{r} \frac{\partial}{\partial r}( r \frac{\partial w}{\partial r}) +\frac{\partial P}{\partial z} 
+\]
+Using $\frac{\partial P}{\partial z}  = A e^{int}$ and taking $w(r, t) = u(r) e^{int}$ yields: $\frac{\partial w}{\partial t} = (in) u e^{int}$,  
+$\frac{\partial w}{\partial r} = u'(r) e^{int}$, and $\frac{\partial^2 w}{\partial r^2} = u''(r) e^{int}$, 
+$\frac{\partial}{\partial r}( r \frac{\partial w}{\partial r}) = u'(r) e^{int} + r u''(r) e^{int}$.
+Therefore the Wormersley equation becomes:
+\ba
+	\frac{\mu}{r} \bigg [ u'(r) e^{int} + r u''(r) e^{int} \bigg ]	+  A e^{int}		&=	\rho (i~n) u(r) e^{int} \\
+	\mu \frac{d^2 u(r)}{d r^2} + \frac{\mu}{r} \frac{d u(r)}{d r} + A 			&= (i~n )~ \rho ~ u(r) \text{ by dividing through } e^{int} \\
+	\frac{d^2 u(r)}{d r^2} + \frac{1}{r} \frac{d u(r)}{d r} - \frac{i~n~\rho}{\mu} u	&= - \frac{A}{\mu} \text{ by dividing through } \mu \text{ and rearranging} \\
+\ea
+Finally using $\nu = \frac{\mu}{\rho}$ we have:
+\[
+	\frac{d^2 u(r)}{d r^2} + \frac{1}{r} \frac{d u(r)}{d r} - \frac{i~n}{\nu} u = - \frac{A}{\mu}
+\]
+By simple inspection, one particular solution is a constant w.r.t. $r$, such as $u_p = C$, substituting it into the differential equation gives:
+\[
+	- \frac{i~n~\rho}{\mu} u_p = - \frac{A}{\mu}
+\]
+thus $u_p = \frac{A}{in\rho}$.
+The homogeneous equation is:
+\[
+	\frac{d^2 u(r)}{d r^2} + \frac{1}{r} \frac{d u(r)}{d r} + \frac{i^3~n}{\nu} u = 0
+\]
+Take $\lambda^2 = \frac{i^3~n}{\nu}$, we now have:
+
+\ba
+	\frac{d^2 u(r)}{d r^2} + \frac{1}{r} \frac{d u(r)}{d r} + \lambda^2 u	&= 0 \\
+	r^2 \frac{d^2 u(r)}{d r^2} + r \frac{d u(r)}{d r} + (\lambda r)^2 u	&= 0 ~ ~ (1)\\
+\ea
+Take $x=\lambda r$, then:
+\ba
+	\frac{d u(x)}{dr} &= \frac{d u(\lambda r)}{dr}=\lambda   \frac{d u(x)}{dx} \\
+	\frac{d^2 u(x)}{dr^2} &= \lambda^2   \frac{d^2 u(x)}{dx^2} \\
+\ea
+Substitute back into (1), we have
+\ba
+	\lambda^2 r^2 \frac{d^2 u(x)}{dx^2} + \lambda r \frac{d u(x)}{d x} + (\lambda r)^2 u(x)	&= 0 \\
+	x^2 \frac{d^2 u(x)}{dx^2} + x  \frac{d u(x)}{d x} +  x^2 u						&= 0 \\
+\ea
+The last equation is a Bessel's equation of order $0$, therefore
+the solution, $u_h$, of the homogeneous equation is a solution of a Bessel's equation of order $0$:
+\[
+	u_h(r) = C_1 J_0(\lambda r) + C_2 Y_0(\lambda r)
+\]
+And
+\[
+	u(r) = u_h(r) + u_p(r) = C_1 J_0(\lambda r) + C_2 Y_0(\lambda r)  +\frac{A}{in\rho}
+\]
+Now we apply the boundary conditions to our solution.
+\[
+	u'(r) = C_1 J'_0(\lambda r) + C_2 Y'_0(\lambda r)
+\]
+We have
+\ba
+	J_0(x)		&= \sum_{n=0}^\infty	\frac{(-1)^n x^{2n}} {2^{2n} n! \Gamma(1+n)} \\
+				&= 1 - \frac{x^2}{2^2} + \frac{x^4}{2^2 4^2} - \cdots \\
+	J'_0(x)		&= -2 \frac{x}{2^2} + 4 \frac{x^3}{2^2 4^2} - \cdots \\
+	J'_0(0)		&= 0 \\
+	\lim_{r \rightarrow 0} u'(r) &= \lim_{r \rightarrow 0} C_1 J'_0(\lambda r) + C_2 Y'_0(\lambda r) \\
+					&=  0 + \lim_{r \rightarrow 0} C_2 Y'_0(\lambda r) \\
+\ea
+Looking at the plot of $Y_0(x)$, we see that $Y_0(x)$ is not finite as $x \rightarrow 0$, thus in order to have $\frac{\partial w} {\partial r} |_{r=0} = 0$ or $\frac{\partial u} {\partial r} |_{r=0} = 0$
+, the term in $Y_0$ must be discarded and we need $C_2=0$.
+Now we have
+\[
+	u(r) =   C_1 J_0(\lambda r) +\frac{A}{i~n~\rho}
+\]
+Using the second boundary condition $w(R) = u(R) = 0$ we have $C_1 J_0(\lambda R)+\frac{A}{i~n~\rho} = 0$ or $C_1 = -\frac{A}{i ~n~\rho J_0(\lambda R)}$ 
+Putting everything back
+\ba
+	u(r)	&= \frac{A}{\rho~i~n} \bigg [ 1 - \frac{J_0(\lambda r)} {J_0(\lambda R)} \bigg ] \\
+		&= \frac{A}{\rho~i~n} \bigg [ 1 - \frac{J_0(r \sqrt{\frac{n}{\nu}} i^{\frac{3}{2}})} {J_0(R \sqrt{\frac{n}{\nu}} i^{\frac{3}{2}}) } \bigg ] \\
+\ea
+Take $\alpha = R \sqrt{\frac{n}{\nu}}$ and $y=\frac{r}{R}$ then
+\ba
+	J_0(r \sqrt{\frac{n}{\nu}} i^{\frac{3}{2}}) &= J_0(\frac{r}{R} R \sqrt{\frac{n}{\nu}} i^{\frac{3}{2}}) = J_0(\alpha y  i^{\frac{3}{2}}) \\
+	J_0(R \sqrt{\frac{n}{\nu}} i^{\frac{3}{2}}) &=  J_0(\alpha i^{\frac{3}{2}}) \\
+\ea
+Lastly
+\[
+	w(y,t) = u(r) e^{int} = \frac{A}{\rho~i~n} \bigg [ 1 - \frac{ J_0(\alpha y  i^{\frac{3}{2}}) } { J_0(\alpha i^{\frac{3}{2}}) } \bigg ] e^{int}
+\]
+
+\section*{Question 2}
+
+From 
+\[
+	Q = 2 \pi \int_0^R w(r,t) r dr
+\]
+Make the change of variable $y = \frac{r}{R}, dy = \frac{dr}{R}$ and we have
+\[
+	Q = 2 \pi  \int_0^1 w(y,t) R^2 y ~ dy = 2 \pi R^2 \int_0^1 w ~ y ~ dy
+\]
+Plugging the expression of $w$ found in the previous question
+\ba
+	Q 	&= 2 \pi R^2 \frac{A}{\rho~i~n}  \int_0^1   \bigg [ 1 - \frac{ J_0(\alpha y  i^{\frac{3}{2}}) } { J_0(\alpha i^{\frac{3}{2}}) } \bigg ] e^{int} ~ y ~ dy \\
+		&=  \frac{2 \pi R^2  A}{\rho~i~n} e^{int}  \bigg [ \int_0^1 y~dy - \frac{1}{  J_0(\alpha i^{\frac{3}{2}})  }   \int_0^1 y J_0(\alpha y  i^{\frac{3}{2}}) ~ dy \bigg ] \\
+\ea
+$\int_0^1 y~dy = [ \frac{y^2}{2} ]_0^1 = \frac{1}{2}$ and we make the change of variable $s=\alpha  i^{\frac{3}{2}} y, ds = \alpha  i^{\frac{3}{2}} dy$ so
+\ba
+	 \int_0^1 y J_0(\alpha y  i^{\frac{3}{2}}) ~ dy	&= \int_0^{\alpha  i^{\frac{3}{2}} } \frac{s}{\alpha  i^{\frac{3}{2}}} J_0(s) ~ \frac{1}{\alpha  i^{\frac{3}{2}}} ~ ds \\
+	 									&= \frac{1}{\alpha^2 i^3}  \int_0^{\alpha  i^{\frac{3}{2}} } s J_0(s) ~ ds \\
+	 									&= \frac{\alpha  i^{\frac{3}{2}}}{\alpha^2 i^3} J_1(\alpha  i^{\frac{3}{2}})\\
+\ea
+Therefore
+\ba
+	Q 	&= \frac{2 \pi R^2  A}{\rho~i~n} e^{int} \bigg [  \frac{1}{2} -  \frac{\alpha  i^{\frac{3}{2}}}{\alpha^2 i^3} \frac { J_1(\alpha  i^{\frac{3}{2}}) } {  J_0(\alpha i^{\frac{3}{2}})  }  \bigg ] \\
+		&=  \frac{\pi R^2 }{\rho} \frac{A}{i~n}  \bigg [ 1 - \frac{2 \alpha  i^{\frac{3}{2}} } { i^3 \alpha^2}  \frac { J_1(\alpha  i^{\frac{3}{2}}) } {  J_0(\alpha i^{\frac{3}{2}})  }  \bigg ] e^{int}   \\
+\ea
+
+\section*{Question 3}
+Start with the equation for $w(y,t)$ established in question 1:
+
+\[
+	w(y,t) = \frac{A}{\rho~i~n} \bigg [ 1 - \frac{ J_0(\alpha y  i^{\frac{3}{2}}) } { J_0(\alpha i^{\frac{3}{2}}) } \bigg ] e^{int}
+\]
+Substituting into the previous equation $n$ with $\alpha = R \sqrt{\frac{n}{\nu}}, n = \nu (\frac{\alpha}{R})^2$
+
+\[
+	w(y,t) =  \frac{A~R^2}{i \rho \nu} \bigg [  \frac{  J_0(\alpha i^{\frac{3}{2}})  - J_0(\alpha y  i^{\frac{3}{2}}) } { \alpha^2 J_0(\alpha i^{\frac{3}{2}}) } \bigg ] e^{i \frac{\nu~t}{R^2} \alpha^2}	\\
+\]
+
+Let $B=\alpha y  i^{\frac{3}{2}}, C = \alpha i^{\frac{3}{2}}$ and $D=i \frac{\nu~t}{R^2} \alpha^2$, rewrite the previous equation
+\[
+	w(y,t) =  \frac{A~R^2}{i \rho \nu} \bigg [  \frac{  J_0(C)  - J_0(B) } { \alpha^2 J_0(C) } \bigg ] e^D	\\
+\]
+When $n \rightarrow 0, \alpha \rightarrow 0$ and we have the indeterminate form for $w(y,t) =  \frac{A~R^2}{i \rho \nu} ( \frac{ 1 - 1 } {0 \cdot 1} ) \cdot 1 = \frac{0}{0}$.
+Therefore we apply L'Hospital's rule, compute the derivatives of numerator and denominator and taking the limit $\alpha \rightarrow 0$:
+\ba
+	\frac{d}{d \alpha} (J_0(C) - J_0(B)) e^D	&=	\frac{d}{d \alpha} (J_0(C) - J_0(B)) ~ e^D + (J_0(C) - J_0(B)) \frac{d}{d \alpha} e^D \\
+	\frac{d}{d \alpha} (J_0(C) - J_0(B))		&= -i^{\frac{3}{2}} J_1(C) + i^{\frac{3}{2}} y J_1(B) \\
+									&=  i^{\frac{3}{2}}  (y J_1(B) - J_1(C))\\
+	\frac{d}{d \alpha} e^D				&= \frac{2 i \nu t}{R^2} \alpha e^D \\					
+\ea
+So
+\ba
+	\frac{d}{d \alpha} (J_0(C) - J_0(B)) e^D	&= \bigg ( i^{\frac{3}{2}}  (y J_1(B) - J_1(C)) +  (J_0(C) - J_0(B))  \frac{2 i \nu t}{R^2} \alpha \bigg ) e^D \\
+	\frac{d} {d \alpha} \alpha^2 J_0(C)		&= 2 \alpha J_0(C) +  \alpha^2 i^{\frac{3}{2}} (- ~ J_1(C)) \\
+									&= \alpha (2 J_0(C) - i^{\frac{3}{2}} \alpha J_1(C)) \\
+\ea
+And 
+\ba
+	\lim_{\alpha \rightarrow 0} \frac{d}{d \alpha} (J_0(C) - J_0(B)) e^D	&=  \bigg ( i^{\frac{3}{2}}  (y \cdot 0 - 0 ) + (0 - 0) \frac{2 i \nu t}{R^2} \cdot 0  \bigg ) 1 = 0 \\
+	\lim_{\alpha \rightarrow 0} \frac{d} {d \alpha} \alpha^2 J_0(C)		&= 0 \cdot (2 \cdot 1 - i^{\frac{3}{2}} \cdot 0 \cdot 0) = 0 \\
+\ea
+We still have the indeterminate form $\frac{0}{0}$, so we apply one more time L'Hospital's rule
+\ba
+	\frac{d^2}{d \alpha^2} (J_0(C) - J_0(B)) e^D	&= \bigg (  i^{\frac{3}{2}} (y  \frac{d}{d \alpha}  J_1(B) - \frac{d}{d \alpha} J_1(C)) + ( \frac{d}{d \alpha} J_0(C) 
+										- \frac{d}{d \alpha} J_0(B))  \frac{2 i \nu t}{R^2} \alpha \\
+										& + (J_0(C) - J_0(B))  \frac{2 i \nu t}{R^2} \bigg ) e^D + \\
+										& \bigg ( i^{\frac{3}{2}}  (y J_1(B) - J_1(C)) +  (J_0(C) - J_0(B))  \frac{2 i \nu t}{R^2} \alpha \bigg )  \frac{2 i \nu t}{R^2} \alpha e^D \\
+										&=  \bigg (  i^{\frac{3}{2}} ( i^{\frac{3}{2}} y^2  \frac{J_0(B) - J_2(B)}{2} - i^{\frac{3}{2}} \frac{J_0(C) - J_2(C)}{2}) + \\
+										& ( i^{\frac{3}{2}}  y J_1(B) -  i^{\frac{3}{2}} J_1(C))  \frac{2 i \nu t}{R^2} \alpha + (J_0(C) - J_0(B))  \frac{2 i \nu t}{R^2} \bigg ) e^D  + \\
+										& \bigg ( i^{\frac{3}{2}}  (y J_1(B) - J_1(C)) +  (J_0(C) - J_0(B))  \frac{2 i \nu t}{R^2} \alpha \bigg )  \frac{2 i \nu t}{R^2} \alpha e^D \\
+										&= \bigg ( \frac{i^3  y^2 } {2} (J_0(B) - J_2(B)) - \frac{ i^3}{2} (J_0(C) - J_2(C)) + \\
+										& ( i^{\frac{3}{2}}  y J_1(B) -  i^{\frac{3}{2}} J_1(C))  \frac{2 i \nu t}{R^2} \alpha + (J_0(C) - J_0(B))  \frac{2 i \nu t}{R^2} \bigg ) e^D  + \\
+										& \bigg ( i^{\frac{3}{2}}  (y J_1(B) - J_1(C)) +  (J_0(C) - J_0(B))  \frac{2 i \nu t}{R^2} \alpha \bigg )  \frac{2 i \nu t}{R^2} \alpha e^D \\
+	\frac{d^2}{d \alpha^2} \alpha^2 J_0(C)		&= 2 J_0(C) - i^{\frac{3}{2}} \alpha J_1(C)  + \alpha (2 \frac{d}{d \alpha} J_0(C) \\
+										& -  i^{\frac{3}{2}} J_1(C)  - i^{\frac{3}{2}} \alpha \frac{d}{d \alpha} J_1(C))  \\	
+										&= 2 J_0(C) - i^{\frac{3}{2}} \alpha J_1(C)  + \alpha (2 i^{\frac{3}{2}} (-J_1(C)) \\
+										& -  i^{\frac{3}{2}} J_1(C)  - i^3 \alpha \frac{J_0(C) - J_2(C)}{2} ) \\ 	
+										&= 2 J_0(C) - i^{\frac{3}{2}} J_1(C)  - 3 i^{\frac{3}{2}} J_1(C) \alpha  - \frac{i^3}{2} (J_0(C) - J_2(C)) \alpha \\							
+\ea
+Next we take the second derivative of the numerator of $w(y,t)$ when $\alpha \rightarrow 0$ using the expression above:
+\ba
+	\lim_{\alpha \rightarrow 0} \frac{d^2}{d \alpha^2} (J_0(C) - J_0(B)) e^D	&= \bigg ( \frac{i^3 y^2 } {2} (1 -  0) - \frac{ i^3 }{2} (1 - 0) + \\
+															& ( i^{\frac{3}{2}}  y \cdot 0 -  i^{\frac{3}{2}}  \cdot 0) \frac{2 i \nu t}{R^2} \cdot 0 + (1 - 1)  \frac{2 i \nu t}{R^2} \bigg )\cdot 1 + \\
+															& \bigg ( i^{\frac{3}{2}}  (y \cdot 0 - 0) + (1- 1) \frac{2 i \nu t}{R^2}  \cdot 0 \bigg )  \frac{2 i \nu t}{R^2}  \cdot 0 \cdot 1 \\
+															&= \frac{i^3} {2} (y^2 - 1) = \frac{i} {2} (1 - y^2) \\
+\ea
+Similarly for the limit of $\alpha \rightarrow 0$ of the second derivative of the denominator of  $w(y,t)$, we get
+\ba
+	\lim_{\alpha \rightarrow 0} \frac{d^2}{d \alpha^2}\alpha^2 J_0(C)		&= 2 \cdot 1 - i^{\frac{3}{2}} \cdot 0 - 3 i^{\frac{3}{2}}  \cdot 0 \cdot 0  - \frac{i^3}{2}  (1 - 0) \cdot 0\\
+															&= 2 \\
+\ea
+Therefore for a constant input pressure, we have
+\[
+	w = \frac{A~R^2}{i \rho \nu} \frac{i}{4}  (1 - y^2) = \frac{A}{4 \mu} R^2 (1 - y^2)
+\]
+which is equation 2 in Wormersley’s paper with $A=\frac{p_1 - p_2}{l}$\\
+
+Using the expression of the differential equation established in question (1) and with $n=0$, we want to solve
+\[
+	r^2 \frac{d^2 u(r)}{d r^2} + r \frac{d u(r)}{d r}  = - \frac{A}{\mu} r^2
+\]
+This is an Euler equation or a Legendre ordinary differential equation  with $\alpha=1, \beta=0$, so we make the change of variable $e^t= r$ or $\ln{r}= t$.
+Then $r \frac{du}{dr} = \frac{d u}{d t}$ and $r^2 \frac{d^2y}{dr^2} = \frac{d^2u}{dt^2} - \frac{du}{dt}$.
+
+which yields for the ODE
+\ba
+	\frac{d^2 u}{d t^2} - \frac{du}{dt} +  \frac{du}{dt}	&= - \frac{A}{\mu} e^{2t} \\
+	\frac{d^2 u}{d t^2} &= - \frac{A}{\mu} e^{2t} \\
+\ea
+For the homogeneous equation integrating twice gives $u(t) = C_1 t + C_2$ or $u(r) = C_1 \ln(r) + C_2$.
+Take for one particular solution of the ODE:
+$u_p(t) = C_3 e^{2t}, u'_p(t) = 2 C_3 e^{2t}, u''_p(t) = 4 C_3 e^{2t}$, 
+substitute into the ODE gives $4 C_3 e^{2t} =  - \frac{A}{\mu} e^{2t}$ or $C_3 = - \frac{A}{4 \mu}$ 
+thus $u_p(t) =  - \frac{A}{4 \mu} e^{2t}$ or $u_p(r) =  - \frac{A}{4 \mu} r^2$.
+Therefore the total solution is 
+\[
+	u(r) = - \frac{A}{4 \mu} r^2  + C_1 \ln(r) + C_2
+\]
+From this, we write $u'(r) = - \frac{A}{2 \mu} r  + \frac{C_1}{r}$.
+So to have the boundary condition $\frac{\partial w} {\partial r} |_{r=0} = 0$ or $\frac{\partial u} {\partial r} |_{r=0} = 0$, $C_1$ has to be zero so $u'(0)$ is finite and equal to $0$.
+The second boundary condition $w(R)=0$, or $u(R)=0$, gives $C_2 = \frac{A}{4 \mu} R^2$.
+Finally
+\[
+	u(r) = -  \frac{A}{4 \mu}(r^2 - R^2) = \frac{A}{4 \mu} R^2 (1 - (\frac{r}{R})^2) =  \frac{A}{4 \mu} R^2 (1 - y^2)
+\]
+which is equation (2) in Wormersley’s paper for $n=0$, and $A=\frac{p_1 - p_2}{l}$ and which is the expression of $w$ we just found in question 3.
+
+
+\section*{Question 4}
+For Poiseuille's flow
+\[
+	w = \frac{p_1 - p_2}{4 \mu l} R^2 (1 - y^2)
+\]
+And
+\[
+	Q = 2 \pi \int_0^R w(r,t) r dr
+\]
+
+
+Make the change of variable $y = \frac{r}{R}, dy = \frac{dr}{R}$ and we have
+\ba
+	Q	&= 2 \pi \int_0^1  \frac{p_1 - p_2}{4 \mu l} R^2 (1 - y^2) R ~ y ~ R ~ dy \\
+		&= 2 \pi  \frac{p_1 - p_2}{4 \mu l} R^4  \int_0^1  (1 - y^2) ~ y ~ dy \\
+		&= 2 \pi  \frac{p_1 - p_2}{4 \mu l} R^4  [\frac{y^2}{2} - \frac{y^4}{4} ]_0^1 \\
+		&= 2 \pi  \frac{p_1 - p_2}{4 \mu l} R^4  \frac{1}{4} \\
+		&=  \frac{p_1 - p_2}{8 \mu l} \pi R^4 
+\ea
+We just obtain equation 20 in Wormersley’s paper.
+
+
+\end{document}
