@@ -19,5 +19,5 @@ title('Saturation of Active Force with ECM Stiffness', 'FontWeight', 'bold', 'Fo
 grid on;
 hold on;
 yline(alpha, '--r', ['Saturation level (\alpha = ', num2str(alpha), ')']);
-legend('f^a/f^0', 'Location', 'southeast');
+legend('f^a/f^0, \alpha=3, k_c=1', 'Location', 'southeast', 'FontWeight', 'bold', 'FontSize', 24);
 hold off;

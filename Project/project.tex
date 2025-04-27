@@ -95,9 +95,78 @@ saturation pattern of behavior.
   \label{fig:combined}
 \end{figure}
 
+\section*{Derivation}
 
-\section*{Anisotropic Polarized Actomyosin Force}
+We want to show, using the 1D two‐spring model of cell and matrix (Figure~\ref{fig:1d-spring-model}),
+that the cell’s active force \(f_a\) satisfies the equation:
+\[
+\frac{f^{a}}{f^{0}} = \alpha \,\frac{k_{m}}{\tilde{k}_{c} + k_{m}}
+\]
 
+Initially, the force balance equation is:
+\[
+k_c (l_c - l_c^R) = k_m (l_m - l_m^R)
+\]
+In the presence of an active force, the force balance becomes:
+\[
+k_c (l_c - l_c^R) = k_m (l_m - l_m^R) + f_a
+\]
+The active force is modeled as:
+\[
+f^a = - \alpha \, k_c (l_c - l_c^R)
+\]
+where \(\alpha > 0\) is the cell polarizability parameter.
+From the spring model, the cellular strain satisfies:
+
+\[
+\frac{\Delta l_c}{l_c^0} = \frac{\tilde{k}_c}{\tilde{k}_c + k_m} \frac{\Delta l_c^0}{l_c^0}
+\]
+where \(\tilde{k}_c = (1 + \alpha) k_c\) is the effective active stiffness.
+
+Expanding this:
+\begin{align*}
+l_c - l_c^0 &= \frac{\tilde{k}_c}{\tilde{k}_c + k_m} (-\Delta l_c^0)
+\end{align*}
+Thus:
+\begin{align*}
+l_c - l_c^R &= (l_c - l_c^0) + (l_c^0 - l_c^R) \\
+&= - \frac{\tilde{k}_c}{\tilde{k}_c + k_m} \Delta l_c^0 + \Delta l_c^0 \\
+&= \left(1 - \frac{\tilde{k}_c}{\tilde{k}_c + k_m} \right) \Delta l_c^0 \\
+&= \frac{k_m}{\tilde{k}_c + k_m} \Delta l_c^0
+\end{align*}
+
+Substituting back into the active force:
+\[
+f^a = -\alpha k_c (l_c - l_c^R) = -\alpha k_c \left( \frac{k_m}{\tilde{k}_c + k_m} \Delta l_c^0 \right)
+\]
+
+Since the baseline force \(f^0\) is proportional to \(k_c \Delta l_c^0\):
+\[
+f^0 = k_c \Delta l_c^0
+\]
+Thus, we have:
+\[
+f^a = - \alpha \, \frac{k_m}{\tilde{k}_c + k_m} f^0
+\]
+Depending on how you define the direction of the active force, we have, finally:
+\[
+\boxed{
+\frac{f^a}{f^0} = \alpha \, \frac{k_m}{\tilde{k}_c + k_m}
+}
+\]
+
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=1\textwidth]{springs}
+  \caption{1D model: active cell spring (stiffness \(k_c\)) in series with 
+  ECM spring (stiffness \(k_m\)).}
+  \label{fig:1d-spring-model}
+\end{figure}
+
+\section*{Interpretation}
+
+The formal form of anisotropic polarized actomyosin force is:
 \[
   \frac{f^{a}}{f^{0}}
   = \alpha \,\frac{k_{m}}{\tilde{k}_{c} + k_{m}}
@@ -109,20 +178,19 @@ saturation pattern of behavior.
   \item $k_{m}$: matrix rigidity
 \end{itemize}
 
-\section*{Interpretation}
-
 \begin{itemize}
   \item For very soft matrices (\(k_{m}\ll \tilde{k}_{c}\)):
     \[
       \frac{f^{a}}{f^{0}}
       = \alpha \,\frac{k_{m}}{\tilde{k}_{c} + k_{m}}
-      \;\longrightarrow\;0.
+      \;\longrightarrow\;0
+      \quad\text{as }k_{m}\to 0.
     \]
     If \(k_{m}\ll \tilde{k}_{c}\), then \(\tilde{k}_{c}+k_{m}\approx \tilde{k}_{c}\) and
     \[
       \frac{f^{a}}{f^{0}}
       \approx \alpha \,\frac{k_{m}}{\tilde{k}_{c}}
-       \approx  \,k_{m}
+       \approx   \alpha^{*}  \,k_{m}
       \;\longrightarrow\;0
       \quad\text{as }k_{m}\to 0.
     \]
@@ -137,23 +205,6 @@ saturation pattern of behavior.
 
 Thus, the active force grows with matrix stiffness and  
 saturates at a maximum value proportional to~$\alpha$.
-
-\section*{Derivation.}
-
-Here we show, using the 1-D two‐spring model of cell and matrix  (Figure~\ref{fig:1d-spring-model}),
-that the cell’s active force \(f_a\) vs.\ ECM stiffness \(k\) follows the
-same functional form:
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=1\textwidth]{springs}
-  \caption{1D model: active cell spring (stiffness \(k_c\)) in series with \\
-  ECM spring (stiffness \(k_m\)).}
-    \label{fig:1d-spring-model}
-\end{figure}
-
-
-\section*{Illustration}
 
 \begin{figure}[H]
   \centering
