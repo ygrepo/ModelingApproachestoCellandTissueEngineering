@@ -102,42 +102,79 @@ that the cell’s active force \(f_a\) satisfies the equation:
 \[
 \frac{f^{a}}{f^{0}} = \alpha \,\frac{k_{m}}{\tilde{k}_{c} + k_{m}}
 \]
+At equilibrium:
+\begin{align}
+  k_c (l_c - l_c^R) &= k_m (l_m - l_m^R)  \label{eq:force-balance}\\
+  l_c + l_m         &= l_c^0 + l_m^R      \label{eq:length-sum}
+\end{align}
 
-Initially, the force balance equation is:
+From \eqref{eq:length-sum}, 
+\begin{equation}\label{eq:l_m}
+  l_m = (l_c^0 + l_m^R) - l_c
+\end{equation}
+
+Substitute \eqref{eq:l_m} into the force-balance \eqref{eq:force-balance}:
+\begin{align*}
+  k_c (l_c - l_c^R)
+  &= k_m \bigl(l_m - l_m^R\bigr) \nonumber\\
+  &= k_m\bigl((l_c^0 + l_m^R) - l_c - l_m^R\bigr)\nonumber\\
+  &= k_m (l_c^0 - l_c)\,. 
+\end{align*}
+
+Rearrange to solve for \(l_c\):
+\begin{align*}
+  k_c\,l_c - k_c\,l_c^R       &= k_m\,l_c^0 - k_m\,l_c \nonumber\\
+  k_c\,l_c + k_m\,l_c         &= k_m\,l_c^0 + k_c\,l_c^R \nonumber\\
+  (k_c + k_m)\,l_c            &= k_m\,l_c^0 + k_c\,l_c^R \nonumber\\
+  l_c                         &= \frac{k_m\,l_c^0 + k_c\,l_c^R}{k_c + k_m}
+\end{align*}
+
+We have
 \[
-k_c (l_c - l_c^R) = k_m (l_m - l_m^R)
+  l_c^R = l_c^0 + \Delta l_c^0,
 \]
-In the presence of an active force, the force balance becomes:
+then
+\begin{align*}
+  l_c
+  &= \frac{k_m\,l_c^0 + k_c\,(l_c^0 + \Delta l_c^0)}{k_c + k_m}\nonumber\\
+  &= \frac{(k_m + k_c)\,l_c^0 + k_c\,\Delta l_c^0}{k_c + k_m}\nonumber\\
+  &= l_c^0 + \frac{k_c}{k_c + k_m}\,\Delta l_c^0\,,
+\end{align*}
+so
 \[
-k_c (l_c - l_c^R) = k_m (l_m - l_m^R) + f_a
+  \Delta l_c \;=\; l_c - l_c^0 \;=\; \frac{k_c}{k_c + k_m}\,\Delta l_c^0
 \]
+
+Introducing myosin polarization of the cytoskeleton fibers within the cell,  with 
+\[
+  \tilde{k}_c \;=\; (1 + \alpha)\,k_c \quad (\alpha>0)
+\]
+the cellular strain satisfies the equation
+\[
+  \frac{\Delta l_c}{l_c^0}
+  = \frac{\tilde{k}_c}{\tilde{k}_c + k_m}\,\frac{\Delta l_c^0}{l_c^0}
+\]
+
 The active force is modeled as:
 \[
-f^a = - \alpha \, k_c (l_c - l_c^R)
+  f^a = -\,\alpha\,k_c\,(l_c - l_c^R)
 \]
-where \(\alpha > 0\) is the cell polarizability parameter.
-From the spring model, the cellular strain satisfies:
-
+from
 \[
-\frac{\Delta l_c}{l_c^0} = \frac{\tilde{k}_c}{\tilde{k}_c + k_m} \frac{\Delta l_c^0}{l_c^0}
+  \Delta l_c \;=\; l_c - l_c^0 \;=\; \,\frac{\tilde{k}_c}{\tilde{k}_c + k_m} \,\Delta l_c^0
 \]
-where \(\tilde{k}_c = (1 + \alpha) k_c\) is the effective active stiffness.
 
-Expanding this:
-\begin{align*}
-l_c - l_c^0 &= \frac{\tilde{k}_c}{\tilde{k}_c + k_m} (-\Delta l_c^0)
-\end{align*}
 Thus:
 \begin{align*}
-l_c - l_c^R &= (l_c - l_c^0) + (l_c^0 - l_c^R) \\
-&= - \frac{\tilde{k}_c}{\tilde{k}_c + k_m} \Delta l_c^0 + \Delta l_c^0 \\
+l_c^R - l_c &= (l_c^R - l_c^0) + (l_c^0 - l_c) \\
+&= \Delta l_c^0 - \frac{\tilde{k}_c}{\tilde{k}_c + k_m} \Delta l_c^0 \\
 &= \left(1 - \frac{\tilde{k}_c}{\tilde{k}_c + k_m} \right) \Delta l_c^0 \\
 &= \frac{k_m}{\tilde{k}_c + k_m} \Delta l_c^0
 \end{align*}
 
 Substituting back into the active force:
 \[
-f^a = -\alpha k_c (l_c - l_c^R) = -\alpha k_c \left( \frac{k_m}{\tilde{k}_c + k_m} \Delta l_c^0 \right)
+f^a = -\alpha k_c (l_c - l_c^R) = \alpha k_c \left( \frac{k_m}{\tilde{k}_c + k_m} \Delta l_c^0 \right)
 \]
 
 Since the baseline force \(f^0\) is proportional to \(k_c \Delta l_c^0\):
@@ -146,15 +183,10 @@ f^0 = k_c \Delta l_c^0
 \]
 Thus, we have:
 \[
-f^a = - \alpha \, \frac{k_m}{\tilde{k}_c + k_m} f^0
-\]
-Depending on how you define the direction of the active force, we have, finally:
-\[
 \boxed{
 \frac{f^a}{f^0} = \alpha \, \frac{k_m}{\tilde{k}_c + k_m}
 }
 \]
-
 
 \begin{figure}[h!]
   \centering

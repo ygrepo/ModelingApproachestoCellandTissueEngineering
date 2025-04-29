@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.9.20)  27 APR 2025 11:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.9.20)  29 APR 2025 11:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1181,29 +1181,34 @@ Package pdftex.def Info: actomyosin.png  used on input line 90.
 
 {/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./order
 _parameter.png> <./actomyosin.png>]
-<springs.png, id=39, 918.43124pt x 348.30125pt>
+<springs.png, id=46, 918.43124pt x 348.30125pt>
 File: springs.png Graphic file (type png)
 <use springs.png>
-Package pdftex.def Info: springs.png  used on input line 161.
+Package pdftex.def Info: springs.png  used on input line 193.
 (pdftex.def)             Requested size: 452.9679pt x 171.78517pt.
- [2 <./springs.png>]
-<plot.png, id=47, 1457.445pt x 1318.9275pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[2]
+<plot.png, id=51, 1457.445pt x 1318.9275pt>
 File: plot.png Graphic file (type png)
 <use plot.png>
-Package pdftex.def Info: plot.png  used on input line 211.
+Package pdftex.def Info: plot.png  used on input line 243.
 (pdftex.def)             Requested size: 362.37569pt x 327.9198pt.
- (./project.bbl) [3 <./plot.png (PNG copy)>] (./project.aux)
+ [3 <./springs.png>] (./project.bbl) [4 <./plot.png (PNG copy)>]
+(./project.aux)
 Package rerunfilecheck Info: File `project.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 35491 strings out of 478994
- 820834 string characters out of 5858184
- 1208956 words of memory out of 5000000
- 52279 multiletter control sequences out of 15000+600000
+ 35498 strings out of 478994
+ 820917 string characters out of 5858184
+ 1215064 words of memory out of 5000000
+ 52282 multiletter control sequences out of 15000+600000
  424856 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,11n,116p,723b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 113i,12n,116p,723b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -1218,10 +1223,10 @@ f-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-
 dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2021/texmf-dist/fonts
 /type1/urw/times/utmr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw
 /times/utmri8a.pfb>
-Output written on project.pdf (3 pages, 1062151 bytes).
+Output written on project.pdf (4 pages, 1063874 bytes).
 PDF statistics:
- 102 PDF objects out of 1000 (max. 8388607)
- 76 compressed objects within 1 object stream
- 12 named destinations out of 1000 (max. 500000)
+ 113 PDF objects out of 1000 (max. 8388607)
+ 86 compressed objects within 1 object stream
+ 16 named destinations out of 1000 (max. 500000)
  33 words of extra memory for PDF output out of 10000 (max. 10000000)
 
