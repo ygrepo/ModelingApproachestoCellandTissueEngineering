@@ -132,6 +132,9 @@
 \newcommand{\rvz}{\rndvec{z}}
 \newcommand{\rvX}{\rndvec{X}}
 
+% tell LaTeX to load ntheorem (with thmmarks) *before* thmtools
+\usepackage[thmmarks]{ntheorem}  
+\usepackage{thmtools}
 
 \newtheorem{theorem}{Theorem}[section]
 % \declaretheorem[style=plain,qed=$\square$]{theorem}
@@ -143,8 +146,8 @@
 
 % \theoremstyle{definition}
 %\newtheorem{example}[proof]{Example}
-\declaretheorem[style=definition,qed=$\triangle$,sibling=definition]{example}
-\declaretheorem[style=definition,qed=$\bigcirc$,sibling=definition]{application}
+%\declaretheorem[style=definition,qed=$\triangle$,sibling=definition]{example}
+%\declaretheorem[style=definition,qed=$\bigcirc$,sibling=definition]{application}
 
 %
 %% Typographic tweaks and miscellaneous

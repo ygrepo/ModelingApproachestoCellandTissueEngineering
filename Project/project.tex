@@ -1,58 +1,70 @@
-%\documentclass[12pt,twoside]{article}
-\documentclass{article}
-\usepackage[a4paper,margin=1in]{geometry}
+\documentclass[a4paper,margin=1in]{article}
 
+%— Page layout
+\usepackage{geometry}
+\usepackage{float}                       % [H] placement option
+
+%— Fonts & symbols
+\usepackage{times}                       % Times font
+\usepackage{textcomp}                    % additional text symbols
+\usepackage{bm}                          % bold math
+\usepackage{bbm}                         % blackboard‑bold math
+\usepackage{gensymb}                     % degree symbol, etc.
+
+%— Mathematics
+\usepackage{mathtools}                   % loads amsmath + extras
+\usepackage{amssymb,amsfonts}            % symbols & fonts
+\usepackage{mathrsfs}                    % script fonts
+
+%— Theorems & citations
+\usepackage{thmtools}                    % enhanced theorem environments
+\usepackage{cite}                        % sorted numeric citations
+
+%— Graphics & plots
 \usepackage[dvipsnames]{xcolor}
-\usepackage{tikz,graphicx,amsmath,amsfonts,amscd,amssymb,mathrsfs, bm,cite,epsfig,epsf,url}
-\usepackage[hang,flushmargin]{footmisc}
-\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
-\usepackage{amsthm,multirow,wasysym,appendix}
-\usepackage{array,subcaption} 
-% \usepackage[small,bf]{caption}
-\usepackage{bbm}
-\usepackage{pgfplots}
-\usetikzlibrary{spy}
-\usepgfplotslibrary{external}
-\usepgfplotslibrary{fillbetween}
-\usetikzlibrary{arrows,automata}
-\usepackage{thmtools}
-\usepackage{blkarray} 
-\usepackage{textcomp}
-\usepackage{float}
-%\usepackage[left=0.8in,right=1.0in,top=1.0in,bottom=1.0in]{geometry}
+%\usepackage{graphicx}                    % \includegraphics
+\usepackage{subcaption}                  % sub‑figures
+\usepackage{tikz}                        % drawing
+\usepackage{pgfplots}                    % plotting
+\pgfplotsset{compat=1.17}                % adjust to your version
 
+%— Color & hyperlinks
+\usepackage[dvipsnames]{xcolor}          % named colors
+\usepackage[colorlinks,
+            linkcolor=blue,
+            citecolor=blue,
+            urlcolor=blue]{hyperref}
 
-\usepackage{times}
-\usepackage{amsfonts}
-\usepackage{amsmath}
-\usepackage{latexsym}
-\usepackage{color}
-\usepackage{graphics}
-\usepackage{enumerate}
-\usepackage{amstext}
-\usepackage{blkarray}
+%— Tables & arrays
+\usepackage{array}                       % array extensions
+\usepackage{blkarray}                    % block‑array annotations
+
+%— Footnotes & captions
+\usepackage[hang,flushmargin]{footmisc}  % styled footnotes
+\usepackage[justification=centering,
+            skip=5pt]{caption}           % caption spacing
+
+%— Optional TikZ libraries (load only what you use)
+\usetikzlibrary{arrows,automata,spy,fillbetween}
+\usepgfplotslibrary{external,fillbetween}
+
+%— URL handling
 \usepackage{url}
-\usepackage{epsfig}
-\usepackage{bm}
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,      
-    urlcolor=blue,
-}
-\usepackage{textcomp}
-%\usepackage[left=0.8in,right=1.0in,top=1.0in,bottom=1.0in]{geometry}
-\usepackage{mathtools}
-%\usepackage{minted}
-\usepackage{gensymb}
+%— Symbols
+\usepackage{textcomp}       % extra text symbols (\texteuro, etc.)
+\usepackage{gensymb}        % degree symbol, etc.
 
-\usepackage{graphicx}
-\usepackage{float}
-\usepackage[justification=centering,singlelinecheck=true]{caption}
-\usepackage{subcaption}   
-\usepackage{caption}
-\captionsetup[figure]{skip=5pt}   % ← distance between figure and caption
+%— Mathematics
+\usepackage{mathtools}      % loads amsmath + useful extensions
+
+%— Graphics & Floats
+%\usepackage{graphicx}       % \includegraphics
+\usepackage{float}          % [H] float placement
+
+%— Figure captions & sub‑figures
+\usepackage[justification=centering,
+            skip=5pt]{caption}      % caption spacing
+\usepackage{subcaption}               % sub‑figure environments
 
 \input{macros}
 
@@ -108,17 +120,17 @@ At equilibrium:
   l_c + l_m         &= l_c^0 + l_m^R      \label{eq:length-sum}
 \end{align}
 
-From \eqref{eq:length-sum}, 
-\begin{equation}\label{eq:l_m}
+From \eqref{eq:length-sum}:
+\begin{equation} \label{eq:lm}
   l_m = (l_c^0 + l_m^R) - l_c
 \end{equation}
 
-Substitute \eqref{eq:l_m} into the force-balance \eqref{eq:force-balance}:
+Substitute (3) into the force-balance \eqref{eq:force-balance}:
 \begin{align*}
   k_c (l_c - l_c^R)
   &= k_m \bigl(l_m - l_m^R\bigr) \nonumber\\
   &= k_m\bigl((l_c^0 + l_m^R) - l_c - l_m^R\bigr)\nonumber\\
-  &= k_m (l_c^0 - l_c)\,. 
+  &= k_m (l_c^0 - l_c)
 \end{align*}
 
 Rearrange to solve for \(l_c\):
@@ -131,14 +143,14 @@ Rearrange to solve for \(l_c\):
 
 We have
 \[
-  l_c^R = l_c^0 + \Delta l_c^0,
+  l_c^R = l_c^0 + \Delta l_c^0
 \]
 then
 \begin{align*}
   l_c
-  &= \frac{k_m\,l_c^0 + k_c\,(l_c^0 + \Delta l_c^0)}{k_c + k_m}\nonumber\\
-  &= \frac{(k_m + k_c)\,l_c^0 + k_c\,\Delta l_c^0}{k_c + k_m}\nonumber\\
-  &= l_c^0 + \frac{k_c}{k_c + k_m}\,\Delta l_c^0\,,
+  &= \frac{k_m\,l_c^0 + k_c\,(l_c^0 + \Delta l_c^0)}{k_c + k_m}\\
+  &= \frac{(k_m + k_c)\,l_c^0 + k_c\,\Delta l_c^0}{k_c + k_m}\\
+  &= l_c^0 + \frac{k_c}{k_c + k_m}\,\Delta l_c^0
 \end{align*}
 so
 \[
